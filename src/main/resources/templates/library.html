@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center" style="height: 100vh;">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 bg-white p-4 rounded shadow text-center">
+            <h1 class="mb-4">📚 Welcome to the Library</h1>
+            <div class="d-grid gap-3">
+                <form th:action="@{/books}" method="get">
+                    <button type="submit" class="btn btn-primary w-100">Book Catalog</button>
+                </form>
+
+                <form th:action="@{/copies}" method="get">
+                    <button type="submit" class="btn btn-primary w-100">Copies Catalog</button>
+                </form>
+
+                <form th:action="@{/orders}" method="get">
+                    <button type="submit" class="btn btn-primary w-100">Orders</button>
+                </form>
+
+                <form th:action="@{/users/user}" method="get">
+                    <button type="submit" class="btn btn-primary w-100">User Dashboard</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

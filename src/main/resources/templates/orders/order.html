@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 bg-white p-4 rounded shadow">
+            <h2 class="mb-4 text-center">Order Details</h2>
+
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><strong>ID:</strong> <span th:text="${order.id}">1</span></li>
+                <li class="list-group-item"><strong>User:</strong> <span th:text="${order.user.email}">user@example.com</span></li>
+                <li class="list-group-item">
+                    <strong>Book Copy:</strong>
+                    <span th:text="${order.bookCopy.book.title + ' (Copy #' + order.bookCopy.id + ')'}">Book</span>
+                </li>
+                <li class="list-group-item"><strong>Subscription Type:</strong> <span th:text="${order.subscriptionType}">READING_ROOM</span></li>
+                <li class="list-group-item"><strong>Order Date:</strong> <span th:text="${order.orderDate}">2024-01-01</span></li>
+                <li class="list-group-item"><strong>Expiration Date:</strong> <span th:text="${order.expirationDate}">2024-01-15</span></li>
+                <li class="list-group-item"><strong>Status:</strong> <span th:text="${order.status}">BORROWED</span></li>
+            </ul>
+
+            <div class="d-flex justify-content-between">
+                <form th:action="@{/orders/update/{id}(id=${order.id})}" method="get">
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </form>
+
+                <form th:action="@{/orders/delete/{id}(id=${order.id})}" method="get">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+                <a th:href="@{/orders}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

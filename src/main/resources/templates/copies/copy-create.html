@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Book Copy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 bg-white p-4 rounded shadow">
+            <h2 class="mb-4 text-center">Create Book Copy</h2>
+            <form th:action="@{/copies}" method="post">
+                <div class="mb-3">
+                    <label for="bookId" class="form-label">Book</label>
+                    <select id="bookId" name="bookId" class="form-select" required>
+                        <option value="" disabled selected>Select a book</option>
+                        <option th:each="book : ${books}"
+                                th:value="${book.id}"
+                                th:text="${book.title + ' by ' + book.author}">
+                            Book
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select id="status" name="status" class="form-select" required>
+                        <option value="AVAILABLE">AVAILABLE</option>
+                        <option value="BORROWED">BORROWED</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Create</button>
+            </form>
+
+            <div class="text-center mt-3">
+                <a th:href="@{/copies}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
