@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.title}">Book Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 bg-white p-4 rounded shadow">
+            <h2 class="text-center mb-4">Book Details</h2>
+            <div class="mb-3">
+                <p><strong>ID:</strong> <span th:text="${book.id}">Id</span></p>
+                <p><strong>Title:</strong> <span th:text="${book.title}">Title</span></p>
+                <p><strong>Author:</strong> <span th:text="${book.author}">Author</span></p>
+                <p><strong>Description:</strong> <span th:text="${book.description}">Description</span></p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <form th:action="@{/books/update/{id}(id=${book.id})}" method="get">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+
+                <form th:action="@{/books/delete/{id}(id=${book.id})}" method="get">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+                <a th:href="@{/books}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

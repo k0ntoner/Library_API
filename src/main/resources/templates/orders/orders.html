@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-4">
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Orders</h2>
+        <a th:href="@{/orders/create}" class="btn btn-success">Create New Order</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-center">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Book Copy</th>
+                <th>Subscription</th>
+                <th>Order Date</th>
+                <th>Expiration Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}">1</td>
+                <td th:text="${order.user.email}">user@example.com</td>
+                <td th:text="${order.bookCopy.book.title + ' (Copy #' + order.bookCopy.id + ')'}">Book Copy</td>
+                <td th:text="${order.subscriptionType}">SUBSCRIPTION</td>
+                <td th:text="${order.orderDate}">2025-03-01</td>
+                <td th:text="${order.expirationDate}">2025-03-10</td>
+                <td th:text="${order.status}">BORROWED</td>
+                <td>
+                    <a th:href="@{'/orders/' + ${order.id}}" class="btn btn-info btn-sm">View</a>
+                    <a th:href="@{'/orders/update/' + ${order.id}}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{'/orders/delete/' + ${order.id}}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
